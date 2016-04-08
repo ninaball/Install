@@ -22,6 +22,7 @@ RUN set -ex \
 		libgdbm-dev \
 		ruby \
 		curl \
+		build-essential \
 		autoconf \
 	' \
 	&& apt-get update \
@@ -33,6 +34,7 @@ RUN set -ex \
 	&& mkdir -p /usr/src/ruby \
 	&& tar -xzf ruby.tar.gz -C /usr/src/ruby --strip-components=1 \
 	&& rm ruby.tar.gz \
+RUN set -ex \		
 	&& cd /usr/src/ruby \
 	&& { echo '#define ENABLE_PATH_CHECK 0'; echo; cat file.c; } > file.c.new && mv file.c.new file.c \
 	&& autoconf \
