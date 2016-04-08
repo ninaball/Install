@@ -34,13 +34,16 @@ RUN set -ex \
 	&& mkdir -p /usr/src/ruby \
 	&& tar -xzf ruby.tar.gz -C /usr/src/ruby --strip-components=1 \
 	&& rm ruby.tar.gz 
+RUN set -ex \
+        && apt-get install -y --no-install-recommends openssl
 RUN set -ex \		
 	&& cd /usr/src/ruby \
 	&& { echo '#define ENABLE_PATH_CHECK 0'; echo; cat file.c; } > file.c.new && mv file.c.new file.c \
 	&& autoconf \
 	&& ./configure --disable-install-doc \
 	&& make -j"$(nproc)" \
-	&& make install \
+	&& make install 
+RUN set -ex \
 	&& apt-get purge -y --auto-remove $buildDeps \
 	&& gem update --system $RUBYGEMS_VERSION \
 	&& rm -r /usr/src/ruby
