@@ -6,7 +6,9 @@ RUN mkdir -p /usr/local/etc \
 		echo 'install: --no-document'; \
 		echo 'update: --no-document'; \
 	} >> /usr/local/etc/gemrc
-
+	
+	
+ENV DEBIAN_FRONTEND noninteractive
 ENV RUBY_MAJOR 2.2
 ENV RUBY_VERSION 2.2.4
 ENV RUBY_DOWNLOAD_SHA256 b6eff568b48e0fda76e5a36333175df049b204e91217aa32a65153cc0cdcb761
