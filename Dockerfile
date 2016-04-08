@@ -22,6 +22,7 @@ RUN set -ex \
 		libgdbm-dev \
 		ruby \
 		curl \
+		autoconf \
 	' \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends $buildDeps \
