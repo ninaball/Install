@@ -44,6 +44,7 @@ RUN set -ex \
 	&& make -j"$(nproc)" \
 	&& make install 
 RUN set -ex \
+        && apt-get update \
         && apt-get install -y --no-install-recommends zlib1g-dev \
 	&& apt-get purge -y --auto-remove $buildDeps \
 	&& gem update --system $RUBYGEMS_VERSION \
