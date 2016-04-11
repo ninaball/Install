@@ -45,8 +45,9 @@ RUN set -ex \
 	&& make install 
 RUN set -ex \
         && apt-get update \
-        && apt-get install -y --no-install-recommends zlib1g-dev \
-	&& apt-get purge -y --auto-remove $buildDeps \
+        && apt-get install -y --no-install-recommends zlib1g zlib1g-dev libssl-dev\
+	&& apt-get purge -y --auto-remove $buildDeps 
+RUN set -ex \	
 	&& gem update --system $RUBYGEMS_VERSION \
 	&& rm -r /usr/src/ruby
 
